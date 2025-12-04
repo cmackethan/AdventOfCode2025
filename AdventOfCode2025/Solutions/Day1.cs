@@ -9,41 +9,25 @@ internal class Day1 : ISolution
     {
         var input = InputReader.ReadAsStringArray("/Users/cmackethan/dev/aoc2025/AdventOfCode2025/Input/Day1/Part1.txt");
 
-        var password = 0;
-        var position = 50;
+        var (position, password) = (50, 0);
 
-        foreach (var line in input)
+        foreach (var (direction, distance) in input.Select(x => (x[0], int.Parse(x[1..]))))
         {
-            var direction = line[0];
-            var distance = int.Parse(line[1..]);
-
             if (direction == 'L')
             {
                 position -= distance % 100;
 
-                if (position < 0)
-                {
-                    position += 100;
-                }
+                if (position < 0) position += 100;
                 
-                if (position == 0)
-                {
-                    password++;
-                }
+                if (position == 0) password++;
             }
             else
             {
                 position += distance % 100;
 
-                if (position > 99)
-                {
-                    position -= 100;
-                }
+                if (position > 99) position -= 100;
                 
-                if (position == 0)
-                {
-                    password++;
-                }
+                if (position == 0) password++;
             }
 
             Console.WriteLine($"Position: {position}");
