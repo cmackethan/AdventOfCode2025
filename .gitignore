@@ -51,11 +51,10 @@ CodeCoverage/
 # NUnit
 *.VisualState.xml
 TestResult.xml
-<<<<<<< HEAD
-nunit-*.xml
-=======
 nunit-*.xml
 
 # VSCode
 .vscode/
->>>>>>> 3afeddc (Initial Commit)
+
+# Advent of Code
+Input/
