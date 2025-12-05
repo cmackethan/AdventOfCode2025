@@ -1,4 +1,3 @@
-using System.Reflection.Emit;
 using AdventOfCode2025.Solutions.Interfaces;
 using AdventOfCode2025.Utilities;
 
@@ -10,7 +9,7 @@ internal class Day1 : ISolution
 
     public void Part1()
     {
-        var input = InputReader.ReadAsStringArray("/Users/cmackethan/dev/aoc2025/AdventOfCode2025/Input/Day1/Input.txt");
+        var input = InputReader.ReadAsStringArray("Day1/Input.txt");
 
         var (position, password) = (50, 0);
 
@@ -46,7 +45,7 @@ internal class Day1 : ISolution
 
     public void Part2()
     {
-        var input = InputReader.ReadAsStringArray("/Users/cmackethan/dev/aoc2025/AdventOfCode2025/Input/Day1/Input.txt");
+        var input = InputReader.ReadAsStringArray("Day1/Input.txt");
 
         var (position, password) = (50, 0);
 
