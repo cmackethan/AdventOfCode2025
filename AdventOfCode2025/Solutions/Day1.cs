@@ -7,49 +7,46 @@ internal class Day1 : ISolution
 {
     private const int _dialSize = 100;
 
+    private readonly string[] _input = InputReader.ReadAsStringArray("Day1/Input.txt");
+
+    private int _position = 50;
+    private int _password = 0;
+
     public void Part1()
     {
-        var input = InputReader.ReadAsStringArray("Day1/Input.txt");
-
-        var (position, password) = (50, 0);
-
-        foreach (var (direction, distance) in input.Select(x => (x[0], int.Parse(x[1..]))))
+        foreach (var (direction, distance) in _input.Select(x => (x[0], int.Parse(x[1..]))))
         {
             Console.WriteLine($"Input: {direction}{distance}");
 
             if (direction == 'L')
             {
-                position = (position - distance) % _dialSize;
+                _position = (_position - distance) % _dialSize;
 
-                if (position < 0) position += _dialSize;
+                if (_position < 0) _position += _dialSize;
                 
-                if (position == 0) password++;
+                if (_position == 0) _password++;
             }
             else if (direction == 'R')
             {
-                position = (position + distance) % _dialSize;
+                _position = (_position + distance) % _dialSize;
                 
-                if (position == 0) password++;
+                if (_position == 0) _password++;
             }
             else
             {
                 throw new InvalidOperationException();
             }
 
-            Console.WriteLine($"Position: {position}");
+            Console.WriteLine($"Position: {_position}");
             Console.WriteLine();
         }
 
-        Console.WriteLine($"Password: {password}");
+        Console.WriteLine($"Password: {_password}");
     }
 
     public void Part2()
     {
-        var input = InputReader.ReadAsStringArray("Day1/Input.txt");
-
-        var (position, password) = (50, 0);
-
-        foreach (var (direction, distance) in input.Select(x => (x[0], int.Parse(x[1..]))))
+        foreach (var (direction, distance) in _input.Select(x => (x[0], int.Parse(x[1..]))))
         {
             Console.WriteLine($"Input: {direction}{distance}");
 
@@ -57,28 +54,28 @@ internal class Day1 : ISolution
 
             if (direction == 'L')
             {
-                var positionWasZero = position == 0;
+                var positionWasZero = _position == 0;
 
-                (rotations, position) = Math.DivRem(position - distance, _dialSize);
+                (rotations, _position) = Math.DivRem(_position - distance, _dialSize);
 
                 rotations = Math.Abs(rotations);
 
-                if (position < 0)
+                if (_position < 0)
                 {
-                    position += _dialSize;
+                    _position += _dialSize;
 
-                    if (!positionWasZero && position != 0) rotations++;
+                    if (!positionWasZero && _position != 0) rotations++;
                 }
 
-                if (position == 0) rotations++;
+                if (_position == 0) rotations++;
 
-                password += rotations;
+                _password += rotations;
             }
             else if (direction == 'R')
             {
-                (rotations, position) = Math.DivRem(position + distance, _dialSize);
+                (rotations, _position) = Math.DivRem(_position + distance, _dialSize);
 
-                password += rotations;
+                _password += rotations;
             }
             else
             {
@@ -86,10 +83,10 @@ internal class Day1 : ISolution
             }
 
             Console.WriteLine($"Rotations: {rotations}");
-            Console.WriteLine($"Position: {position}");
+            Console.WriteLine($"Position: {_position}");
             Console.WriteLine();
         }
 
-        Console.WriteLine($"Password: {password}");
+        Console.WriteLine($"Password: {_password}");
     }
 }
